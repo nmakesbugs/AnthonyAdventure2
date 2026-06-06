@@ -181,19 +181,26 @@ function makeTex(scene,key,w,h,fn){
 }
 
 function buildTextures(scene){
-  /* ANTHONY CRT (monochrome green, pre-reveal) */
+  /* ANTHONY — pre-reveal. Recognizable stylized policy guy in a muted suit,
+     phosphor-tinted to fit the CRT world but NOT a monochrome green blob. */
   makeTex(scene,'anthony-crt',48,92,g=>{
-    const G=0x00bb33,DG=0x003300,B=0x001800;
-    g.fillStyle(B,1);g.fillRoundedRect(10,80,10,10,2);g.fillRoundedRect(28,80,10,10,2);
-    g.fillStyle(DG,1);g.fillRoundedRect(8,48,13,34,2);g.fillRoundedRect(26,48,13,34,2);
-    g.fillStyle(G,1);g.fillRoundedRect(5,20,38,30,3);
-    g.fillStyle(DG,1);g.fillRect(20,20,8,18);
-    g.fillStyle(G,1);g.fillRoundedRect(-1,22,7,24,2);g.fillRoundedRect(42,22,7,24,2);
-    g.fillStyle(DG,1);g.fillRoundedRect(40,46,14,10,2);g.fillRoundedRect(44,44,6,3,1);
-    g.fillStyle(G,1);g.fillRoundedRect(16,10,14,12,2);g.fillEllipse(23,12,28,22);
-    g.fillStyle(B,1);g.fillEllipse(17,12,5,5);g.fillEllipse(27,12,5,5);
-    g.fillStyle(DG,1);g.fillRect(13,3,6,2);g.fillRect(23,3,6,2);
-    g.fillStyle(G,1);g.fillRoundedRect(6,2,24,8,2);
+    const sk=0xC9A47A,hr=0x2A1A0E,jk=0x33503F,lap=0x294035,pt=0x232A24,sh=0xD9D9C9,ti=0x9C7A33;
+    g.fillStyle(0x141810,1);g.fillRoundedRect(9,82,12,8,2);g.fillRoundedRect(27,82,12,8,2);
+    g.fillStyle(pt,1);g.fillRoundedRect(9,50,12,34,2);g.fillRoundedRect(27,50,12,34,2);
+    g.fillStyle(0x1a1f1a,1);g.fillRect(8,48,32,3);
+    g.fillStyle(jk,1);g.fillRoundedRect(5,20,38,32,4);
+    g.fillStyle(sh,1);g.fillTriangle(18,20,24,40,14,40);g.fillTriangle(24,20,30,40,34,40);
+    g.fillStyle(ti,1);g.fillRoundedRect(22,20,4,18,1);
+    g.fillStyle(lap,1);g.fillTriangle(18,20,22,34,13,30);g.fillTriangle(30,20,26,34,35,30);
+    g.fillStyle(jk,1);g.fillRoundedRect(0,22,7,26,2);g.fillRoundedRect(41,22,7,26,2);
+    g.fillStyle(sk,1);g.fillEllipse(3,49,7,7);g.fillEllipse(45,49,7,7);
+    g.fillStyle(sk,1);g.fillRect(20,16,8,6);
+    g.fillStyle(sk,1);g.fillRoundedRect(16,8,16,13,3);g.fillEllipse(24,12,23,19);
+    g.fillStyle(hr,1);g.fillEllipse(24,5,24,11);g.fillRoundedRect(13,3,22,6,2);
+    g.fillStyle(0x201008,1);g.fillEllipse(20,12,3,4);g.fillEllipse(28,12,3,4);
+    g.fillStyle(0xEAEAEA,1);g.fillCircle(21,11,1);g.fillCircle(29,11,1);
+    g.fillStyle(hr,1);g.fillRect(17,8,5,1);g.fillRect(26,8,5,1);
+    g.fillStyle(0x7A4A30,1);g.fillRect(21,18,6,1);
   });
 
   /* ANTHONY FULL COLOR (post-reveal) */
@@ -257,17 +264,26 @@ function buildTextures(scene){
   makeTex(scene,'merlin-tackle',145,115,g=>drawMerlin(g,2));
   makeTex(scene,'merlin-sit',145,115,g=>drawMerlin(g,0));
 
-  /* NICK CRT */
+  /* NICK — pre-reveal. The analyst: muted slate suit, glasses, distinct from
+     Anthony but the same clean stylized CRT-world person, not a green blob. */
   makeTex(scene,'nick-crt',48,92,g=>{
-    const G=0x00bb33,DG=0x003300,B=0x001200;
-    g.fillStyle(B,1);g.fillRoundedRect(10,80,10,10,2);g.fillRoundedRect(28,80,10,10,2);
-    g.fillStyle(DG,1);g.fillRoundedRect(8,48,13,34,2);g.fillRoundedRect(26,48,13,34,2);
-    g.fillStyle(G,1);g.fillRoundedRect(5,20,38,30,3);
-    g.fillStyle(DG,1);g.fillRect(20,20,8,18);
-    g.fillStyle(G,1);g.fillRoundedRect(-1,22,7,24,2);g.fillRoundedRect(42,22,7,24,2);
-    g.fillStyle(G,1);g.fillRoundedRect(16,10,14,12,2);g.fillEllipse(23,12,30,22);
-    g.fillStyle(B,1);g.fillEllipse(17,12,5,5);g.fillEllipse(28,12,5,5);
-    g.fillStyle(G,1);g.fillRoundedRect(6,2,24,7,2);
+    const sk=0xCBA079,hr=0x3A2A18,jk=0x3C4654,lap=0x323b47,pt=0x222730,sh=0xDADAE2,ti=0x6E4F6A;
+    g.fillStyle(0x101216,1);g.fillRoundedRect(9,82,12,8,2);g.fillRoundedRect(27,82,12,8,2);
+    g.fillStyle(pt,1);g.fillRoundedRect(9,50,12,34,2);g.fillRoundedRect(27,50,12,34,2);
+    g.fillStyle(0x181b22,1);g.fillRect(8,48,32,3);
+    g.fillStyle(jk,1);g.fillRoundedRect(5,20,38,32,4);
+    g.fillStyle(sh,1);g.fillTriangle(18,20,24,40,14,40);g.fillTriangle(24,20,30,40,34,40);
+    g.fillStyle(ti,1);g.fillRoundedRect(22,20,4,18,1);
+    g.fillStyle(lap,1);g.fillTriangle(18,20,22,34,13,30);g.fillTriangle(30,20,26,34,35,30);
+    g.fillStyle(jk,1);g.fillRoundedRect(0,22,7,26,2);g.fillRoundedRect(41,22,7,26,2);
+    g.fillStyle(sk,1);g.fillEllipse(3,49,7,7);g.fillEllipse(45,49,7,7);
+    g.fillStyle(sk,1);g.fillRect(20,16,8,6);
+    g.fillStyle(sk,1);g.fillRoundedRect(16,8,16,13,3);g.fillEllipse(24,12,23,19);
+    g.fillStyle(hr,1);g.fillEllipse(24,5,24,10);g.fillRoundedRect(14,3,20,5,2);
+    g.fillStyle(0x1a1a1a,1);g.fillRoundedRect(16,10,7,5,2);g.fillRoundedRect(25,10,7,5,2);g.fillRect(23,11,2,1);
+    g.fillStyle(0x9fd0d0,0.5);g.fillRect(17,11,5,3);g.fillRect(26,11,5,3);
+    g.fillStyle(0x201008,1);g.fillEllipse(20,12,2,3);g.fillEllipse(28,12,2,3);
+    g.fillStyle(0x7A4A30,1);g.fillRect(21,18,6,1);
   });
 
   /* ENEMIES */
@@ -595,8 +611,14 @@ class PlaneScene extends Phaser.Scene{
   create(){
     setScene('plane');hideAllUI();
     this.add.rectangle(GW/2,GH/2,GW,GH,0x080808);
-    this.add.text(GW/2,GH*0.15,'DANE COUNTY AIRPORT',{fontFamily:'Press Start 2P,monospace',fontSize:'7px',color:'#ffd700',align:'center'}).setOrigin(0.5);
-    this.add.text(GW/2,GH*0.21,'6:15 AM — REAGAN NATIONAL',{fontFamily:'VT323,monospace',fontSize:'18px',color:'#00ff41',align:'center'}).setOrigin(0.5);
+    // Departures-board readout — clearly two different airports
+    this.add.text(GW/2,GH*0.10,'DEPARTING',{fontFamily:'Press Start 2P,monospace',fontSize:'6px',color:'#336633',align:'center'}).setOrigin(0.5);
+    this.add.text(GW/2,GH*0.145,'DANE COUNTY REGIONAL AIRPORT',{fontFamily:'Press Start 2P,monospace',fontSize:'6px',color:'#ffd700',align:'center'}).setOrigin(0.5);
+    this.add.text(GW/2,GH*0.185,'Madison, Wisconsin · 6:15 AM',{fontFamily:'VT323,monospace',fontSize:'17px',color:'#00bb33',align:'center'}).setOrigin(0.5);
+    this.add.text(GW/2,GH*0.245,'▼',{fontFamily:'VT323,monospace',fontSize:'18px',color:'#336633',align:'center'}).setOrigin(0.5);
+    this.add.text(GW/2,GH*0.30,'ARRIVING',{fontFamily:'Press Start 2P,monospace',fontSize:'6px',color:'#336633',align:'center'}).setOrigin(0.5);
+    this.add.text(GW/2,GH*0.345,'REAGAN NATIONAL (DCA)',{fontFamily:'Press Start 2P,monospace',fontSize:'6px',color:'#ffd700',align:'center'}).setOrigin(0.5);
+    this.add.text(GW/2,GH*0.385,'Washington, DC',{fontFamily:'VT323,monospace',fontSize:'17px',color:'#00bb33',align:'center'}).setOrigin(0.5);
     // Anthony walks across airport
     const ant=this.add.image(-30,GH*0.55,'anthony-crt').setScale(0.9);
     let f=0;
@@ -862,52 +884,56 @@ class BeatEmUpScene extends Phaser.Scene{
     // HP bar
     document.getElementById('hp-bar-wrap').style.display='flex';
     updateHPBar();
-    // Controls
-    this._setupControls();
-    // Input state
+    // Input state — set before controls so listeners always have a target
     this.keys={left:false,right:false,duck:false};
-    // Start intro
+    // Bind controls now, but keep them HIDDEN until the intro is read.
+    this._setupControls();
+    this._hideControls();
+    // Start intro — explanatory text first, controls appear only after.
     Dlg.show([
       {speaker:'NARRATOR',text:"The Capitol complex perimeter. The recently unemployed DC staffers had been milling outside for three days. They had their laptops. Their kombucha. Their lanyards."},
       {speaker:'NARRATOR',text:"When they saw Anthony — and the jacket — something snapped."},
       {speaker:'MERLIN',text:"These people smell sad and angry. This is a concerning combination. Merlin is ready to help."},
-    ],()=>this._spawnWave(1));
+      {speaker:'NARRATOR',text:"CONTROLS: ◀ ▶ move · 💼 SWING to hit · 📄 STUN to freeze them · 💨 DODGE to avoid hits · 🐾 MERLIN to tackle. Clear three waves."},
+    ],()=>{this._showControls();this._spawnWave(1);});
   }
   _setupControls(){
-    const ctrl=document.getElementById('beat-controls');
-    ctrl.style.display='block';
-    const map={'btn-left':()=>this.keys.left=true,'btn-right':()=>this.keys.right=true,'btn-duck':()=>this.keys.duck=true};
-    const up={'btn-left':()=>this.keys.left=false,'btn-right':()=>this.keys.right=false,'btn-duck':()=>this.keys.duck=false};
-    Object.entries(map).forEach(([id,fn])=>{
-      const b=document.getElementById(id);if(!b)return;
-      b.addEventListener('touchstart',(e)=>{e.preventDefault();fn();},{passive:false});
-      b.addEventListener('mousedown',fn);
-    });
-    Object.entries(up).forEach(([id,fn])=>{
-      const b=document.getElementById(id);if(!b)return;
-      b.addEventListener('touchend',(e)=>{e.preventDefault();fn();},{passive:false});
-      b.addEventListener('mouseup',fn);
-    });
-    const actions={
-      'btn-swing':()=>this._doSwing(),
-      'btn-stun':()=>this._doStun(),
-      'btn-dodge':()=>this._doDodge(),
-      'btn-merlin':()=>this._doMerlin(),
+    // Always point the live handlers at the current scene instance (scene can
+    // restart after a game over, which creates a fresh instance).
+    window.__beatScene=this;
+    window.__anthonyMerlin.handleInput=(a)=>{
+      const s=window.__beatScene;if(!s)return;
+      if(a==='swing')s._doSwing();
+      else if(a==='stun')s._doStun();
+      else if(a==='dodge')s._doDodge();
+      else if(a==='merlin')s._doMerlin();
     };
+    // Attach DOM listeners exactly once — they route through window.__beatScene
+    // so they never reference a stale scene after a restart.
+    if(window.__beatBound)return;
+    window.__beatBound=true;
+    const holds={'btn-left':'left','btn-right':'right','btn-duck':'duck'};
+    Object.entries(holds).forEach(([id,key])=>{
+      const b=document.getElementById(id);if(!b)return;
+      const set=(v)=>(e)=>{if(e)e.preventDefault();const s=window.__beatScene;if(s&&s.keys)s.keys[key]=v;};
+      b.addEventListener('touchstart',set(true),{passive:false});
+      b.addEventListener('touchend',set(false),{passive:false});
+      b.addEventListener('mousedown',set(true));
+      b.addEventListener('mouseup',set(false));
+      b.addEventListener('mouseleave',set(false));
+    });
+    const actions={'btn-swing':'_doSwing','btn-stun':'_doStun','btn-dodge':'_doDodge','btn-merlin':'_doMerlin'};
     Object.entries(actions).forEach(([id,fn])=>{
       const b=document.getElementById(id);if(!b)return;
-      b.addEventListener('touchend',(e)=>{e.preventDefault();fn();},{passive:false});
-      b.addEventListener('click',fn);
+      const go=(e)=>{if(e)e.preventDefault();const s=window.__beatScene;if(s&&!s.gameOver&&!s.waveCleared)s[fn]();};
+      b.addEventListener('touchend',go,{passive:false});
+      b.addEventListener('click',go);
     });
-    window.__anthonyMerlin.handleInput=(a)=>{
-      if(a==='swing')this._doSwing();
-      else if(a==='stun')this._doStun();
-      else if(a==='dodge')this._doDodge();
-      else if(a==='merlin')this._doMerlin();
-    };
   }
+  _showControls(){const c=document.getElementById('beat-controls');if(c)c.style.display='block';}
+  _hideControls(){const c=document.getElementById('beat-controls');if(c)c.style.display='none';}
   _spawnWave(n){
-    this.wave=n;this.waveActive=true;this.scriptedFired=false;
+    this.wave=n;this.waveActive=true;this.scriptedFired=false;this.waveSpawned=false;
     const wa=document.getElementById('wave-announce');
     wa.innerHTML=`WAVE ${n}`;wa.style.display='block';
     Audio.fanfare();
@@ -933,6 +959,7 @@ class BeatEmUpScene extends Phaser.Scene{
       e.sprite=this.add.image(e.x,e.y,e.texture).setDepth(3).setOrigin(0.5,1).setScale(0.9);
       this.enemies.push(e);
     }
+    this.waveSpawned=true;
   }
   update(t,dt){
     if(this.gameOver||this.waveCleared)return;
@@ -943,7 +970,7 @@ class BeatEmUpScene extends Phaser.Scene{
     this._updateProjectiles(s);
     this._checkCollisions();
     this._renderEntities();
-    if(this.waveActive&&this._waveComplete())this._onWaveComplete();
+    if(this.waveActive&&this.waveSpawned&&this._waveComplete())this._onWaveComplete();
     if(this.wave===3&&this.waveActive&&!this.scriptedFired)this._checkScriptedMoment();
   }
   _updatePlayer(s){
