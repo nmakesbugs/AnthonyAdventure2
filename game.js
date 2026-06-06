@@ -1316,7 +1316,7 @@ class OperativeScene extends Phaser.Scene{
           {speaker:'ANTHONY',text:"There's a file?"},
           {speaker:'OPERATIVE',text:"There's always a file. ITEM: subject canine. Origin unestablished. Residence exit unexplained. Federal inquiry ongoing. We're aware. We're just not stopping it."},
           {speaker:'MERLIN',text:"Merlin has not volunteered this information. Merlin is also allowed inside. Both things are true."},
-          {speaker:'NARRATOR',text:"The CRT green aesthetic, which had been fighting for control since the hotel room, fully conceded. Anthony and Merlin walked toward the chamber together — one credentialed, one cleared by charisma, both federally unexplained."},
+          {speaker:'NARRATOR',text:"Somewhere, the game's old gray-green seriousness quietly gave up. Anthony and Merlin walked toward the chamber together — one credentialed, one cleared by charisma, both federally unexplained."},
           {speaker:'ANTHONY',text:"I argued us to the one-yard line. He scored on smell. I'll take the assist."},
         ],()=>showTitleCard('CHAPTER FIVE','THE SENATE SHUFFLE',()=>this.scene.start('DDR')));
       });
