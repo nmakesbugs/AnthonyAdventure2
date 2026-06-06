@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>Anthony & Merlin: The Adventure Gets Weird</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Fredoka+One&family=Nunito:wght@400;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================================================================
+     FAKE ANTHONY INTRO — looks like a direct sequel to Anthony's
+     Policy Journey. Torn away on tap by the glitch transition.
+     ================================================================ -->
+<div id="fake-intro">
+  <div class="fi-frame">
+    <!-- Anthony SVG sprite (faithful to original) -->
+    <div class="fi-sprite-area">
+      <svg width="80" height="100" viewBox="0 0 64 80" style="image-rendering:pixelated">
+        <!-- legs -->
+        <rect x="14" y="58" width="10" height="18" rx="2" fill="#1a3a1a"/>
+        <rect x="30" y="58" width="10" height="18" rx="2" fill="#1a3a1a"/>
+        <!-- body / suit jacket -->
+        <rect x="8" y="28" width="38" height="32" rx="3" fill="#00cc33"/>
+        <!-- shirt collar -->
+        <rect x="26" y="28" width="2" height="8" fill="#004400"/>
+        <rect x="28" y="28" width="2" height="8" fill="#004400"/>
+        <!-- tie -->
+        <rect x="28" y="28" width="4" height="20" rx="1" fill="#003300"/>
+        <!-- cheetah jacket hint -->
+        <rect x="8" y="28" width="10" height="32" rx="2" fill="#225522"/>
+        <rect x="38" y="28" width="8" height="32" rx="2" fill="#225522"/>
+        <!-- arms -->
+        <rect x="0" y="30" width="8" height="22" rx="2" fill="#00cc33"/>
+        <rect x="46" y="30" width="8" height="22" rx="2" fill="#00cc33"/>
+        <!-- briefcase -->
+        <rect x="48" y="44" width="14" height="10" rx="1" fill="#004400"/>
+        <rect x="53" y="42" width="4" height="3" rx="1" fill="#336633"/>
+        <!-- neck -->
+        <rect x="24" y="18" width="12" height="12" rx="2" fill="#00cc33"/>
+        <!-- head -->
+        <rect x="16" y="4" width="28" height="20" rx="4" fill="#00cc33"/>
+        <!-- eyes -->
+        <rect x="22" y="10" width="5" height="5" rx="1" fill="#000"/>
+        <rect x="33" y="10" width="5" height="5" rx="1" fill="#000"/>
+        <rect x="23" y="11" width="2" height="2" fill="#004400"/>
+        <rect x="34" y="11" width="2" height="2" fill="#004400"/>
+        <!-- mouth -->
+        <rect x="24" y="18" width="12" height="2" fill="#004400"/>
+      </svg>
+    </div>
+
+    <div class="fi-title-main">
+      ANTHONY'S<br>POLICY JOURNEY
+    </div>
+    <div class="fi-title-sub">
+      Chapter Two: The Hill Beckons<br>
+      <em>A Policy RPG — Real Stakes, Impossible Choices</em>
+    </div>
+
+    <div class="fi-press-start">▶ TAP TO BEGIN</div>
+
+    <div class="fi-footer">
+      v2.0 ·· VEEVA SITE SOLUTIONS ·· MADISON, WI<br>
+      ©2026 DEFINITELY JUST THE SEQUEL
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     PHASER CONTAINER
+     ================================================================ -->
+<div id="phaser-container"></div>
+
+<!-- ================================================================
+     DOM UI OVERLAY — positioned over Phaser canvas
+     ================================================================ -->
+<div id="game-ui" style="display:none">
+  <div class="ui-layer">
+
+    <!-- HP Bar (shown during beat-em-up) -->
+    <div id="hp-bar-wrap">
+      <div class="hp-label-row">
+        <span>ANTHONY + MERLIN</span>
+        <span id="hp-text">100/100</span>
+      </div>
+      <div class="hp-bar-outer">
+        <div id="hp-fill" class="good" style="width:100%"></div>
+      </div>
+    </div>
+
+    <!-- Dialogue Box -->
+    <div id="dialogue-box">
+      <div class="dlg-speaker" id="dlg-speaker"></div>
+      <div class="dlg-text" id="dlg-text"></div>
+      <div class="dlg-continue" id="dlg-continue" style="opacity:0">▼ TAP</div>
+    </div>
+
+    <!-- Choice Panel -->
+    <div id="choice-panel">
+      <div class="choice-title" id="choice-title">— CHOOSE YOUR ACTION —</div>
+    </div>
+
+    <!-- Beat-em-up controls -->
+    <div id="beat-controls">
+      <!-- Left D-pad -->
+      <div class="ctrl-left">
+        <button class="ctrl-btn" id="btn-left" data-action="left">
+          <span class="ctrl-icon">◀</span>
+        </button>
+        <button class="ctrl-btn" id="btn-right" data-action="right">
+          <span class="ctrl-icon">▶</span>
+        </button>
+        <button class="ctrl-btn" id="btn-duck" data-action="duck">
+          <span class="ctrl-icon">⬇</span><span>DUCK</span>
+        </button>
+        <div></div>
+      </div>
+      <!-- Right action buttons -->
+      <div class="ctrl-right">
+        <button class="ctrl-btn" id="btn-swing" data-action="swing">
+          <span class="ctrl-icon">💼</span><span>SWING</span>
+        </button>
+        <button class="ctrl-btn" id="btn-stun" data-action="stun">
+          <span class="ctrl-icon">📄</span><span>STUN</span>
+        </button>
+        <button class="ctrl-btn" id="btn-dodge" data-action="dodge">
+          <span class="ctrl-icon">💨</span><span>DODGE</span>
+        </button>
+        <button class="ctrl-btn merlin-btn" id="btn-merlin" data-action="merlin">
+          <span class="ctrl-icon">🐾</span><span>MERLIN</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Wave announcement -->
+    <div id="wave-announce"></div>
+
+    <!-- DDR Container -->
+    <div id="ddr-container">
+      <div class="ddr-score-display" id="ddr-score">HITS: 0/0</div>
+      <div class="ddr-feedback" id="ddr-feedback">PERFECT!</div>
+      <div class="ddr-lanes" id="ddr-lanes">
+        <!-- lanes injected by JS -->
+      </div>
+      <!-- Ms. Cho silhouette area -->
+      <div class="ddr-ms-cho" id="ddr-ms-cho"></div>
+    </div>
+
+    <!-- Routing Puzzle -->
+    <div id="routing-container">
+      <div class="routing-header" id="routing-header">CHOOSE YOUR ROUTE</div>
+      <!-- Route options injected by JS -->
+    </div>
+
+    <!-- Cyndie Call overlay -->
+    <div id="cyndie-call">
+      <div class="cyndie-phone">📱</div>
+      <div class="cyndie-name">INCOMING CALL: CYNDIE ❤️</div>
+      <div class="dlg-text" id="cyndie-text" style="max-width:300px;text-align:center;color:#F0EAD8;font-family:'VT323',monospace;font-size:20px"></div>
+    </div>
+
+    <!-- Screen Flash -->
+    <div id="screen-flash"></div>
+
+    <!-- Title Card -->
+    <div id="title-card">
+      <div class="tc-chapter" id="tc-chapter"></div>
+      <div class="tc-title" id="tc-title"></div>
+    </div>
+
+    <!-- Damage Overlay -->
+    <div id="damage-overlay">
+      <div class="overlay-title">💥 OUCH</div>
+      <div class="overlay-msg" id="damage-msg"></div>
+      <div class="hp-label-row" style="justify-content:center;font-family:'Press Start 2P',monospace;font-size:8px;color:#ff8888">
+        HP: <span id="damage-hp-display">--</span>
+      </div>
+      <button class="overlay-btn" onclick="window.__anthonyMerlin.resumeFromDamage()">KEEP GOING ▶</button>
+    </div>
+
+    <!-- Win Overlay -->
+    <div id="win-overlay">
+      <div class="overlay-title win">✓ CLEARED!</div>
+      <div class="overlay-msg" id="win-msg"></div>
+      <button class="overlay-btn" onclick="window.__anthonyMerlin.proceedFromWin()">CONTINUE ▶</button>
+    </div>
+
+    <!-- Ending Screen -->
+    <div id="ending-screen">
+      <!-- injected by JS -->
+    </div>
+
+  </div><!-- .ui-layer -->
+</div><!-- #game-ui -->
+
+<!-- Phaser 3 -->
+<script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+<!-- Game -->
+<script src="game.js"></script>
+
+<script>
+// ── FAKE INTRO TAP HANDLER ──
+(function() {
+  const fi = document.getElementById('fake-intro');
+  let triggered = false;
+
+  function startGlitch() {
+    if (triggered) return;
+    triggered = true;
+    // Play glitch sound
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      // Glitch: rapid noise burst + descending tone
+      const dur = 0.8;
+      const n = ctx.sampleRate * dur;
+      const buf = ctx.createBuffer(1, n, ctx.sampleRate);
+      const d = buf.getChannelData(0);
+      for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * (1 - i/n) * 0.6;
+      const src = ctx.createBufferSource(); src.buffer = buf;
+      const g = ctx.createGain(); src.connect(g); g.connect(ctx.destination);
+      g.gain.setValueAtTime(0.8, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+      src.start();
+      // Boof at end
+      setTimeout(() => {
+        const o = ctx.createOscillator(), g2 = ctx.createGain();
+        o.connect(g2); g2.connect(ctx.destination);
+        o.type = 'sawtooth';
+        o.frequency.setValueAtTime(160, ctx.currentTime);
+        o.frequency.exponentialRampToValueAtTime(70, ctx.currentTime + 0.25);
+        g2.gain.setValueAtTime(0.5, ctx.currentTime);
+        g2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+        o.start(); o.stop(ctx.currentTime + 0.3);
+      }, 500);
+    } catch(e) {}
+
+    fi.classList.add('glitching');
+    setTimeout(() => {
+      fi.style.display = 'none';
+      document.getElementById('game-ui').style.display = 'flex';
+      // Boot Phaser game
+      if (window.__anthonyMerlinBootGame) window.__anthonyMerlinBootGame();
+    }, 820);
+  }
+
+  fi.addEventListener('click', startGlitch);
+  fi.addEventListener('touchend', function(e) { e.preventDefault(); startGlitch(); }, { passive: false });
+})();
+</script>
+
+</body>
+</html>

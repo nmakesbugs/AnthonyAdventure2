@@ -1,0 +1,721 @@
+/* ================================================================
+   ANTHONY & MERLIN: THE ADVENTURE GETS WEIRD
+   style.css — Fake intro + DOM UI chrome
+   ================================================================ */
+
+/* Google Fonts loaded via link tags in index.html - graceful fallback to monospace */
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0a0a; touch-action: manipulation; }
+
+/* ================================================================
+   FAKE ANTHONY INTRO — pixel-perfect recreation
+   ================================================================ */
+#fake-intro {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+  background: #0a0a0a;
+  font-family: 'Press Start 2P', monospace;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* CRT scanlines */
+#fake-intro::before {
+  content: '';
+  position: fixed; inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent, transparent 2px,
+    rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px
+  );
+  pointer-events: none; z-index: 1;
+}
+
+/* CRT vignette */
+#fake-intro::after {
+  content: '';
+  position: fixed; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none; z-index: 1;
+}
+
+.fi-frame {
+  width: 100%; max-width: 480px;
+  height: 100vh; max-height: 850px;
+  border: 2px solid #00cc33;
+  box-shadow: 0 0 16px #00cc33, 0 0 48px rgba(0,200,51,0.12);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 20px; padding: 20px; text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.fi-title-main {
+  font-size: clamp(9px, 2.5vw, 11px);
+  color: #ffd700;
+  text-shadow: 0 0 10px #ffd700, 2px 2px 0 #8b7300;
+  line-height: 1.8;
+  animation: titlePulse 2s ease-in-out infinite;
+}
+
+.fi-title-sub {
+  font-size: clamp(5px, 1.8vw, 7px);
+  color: #cc44ff;
+  text-shadow: 0 0 8px #cc44ff;
+  line-height: 1.8;
+  margin-top: 4px;
+}
+
+.fi-title-sub em {
+  color: #ff8800;
+  font-style: normal;
+  font-size: clamp(6px, 2vw, 8px);
+}
+
+@keyframes titlePulse {
+  0%, 100% { text-shadow: 0 0 10px #ffd700, 2px 2px 0 #8b7300; }
+  50% { text-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700, 2px 2px 0 #8b7300; }
+}
+
+.fi-sprite-area {
+  display: flex; justify-content: center;
+  margin: 8px 0;
+}
+
+.fi-press-start {
+  font-size: clamp(6px, 2vw, 8px);
+  color: #00cc33;
+  animation: blink 1.2s step-end infinite;
+}
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.fi-footer {
+  font-size: clamp(5px, 1.5vw, 6px);
+  color: #336633;
+  line-height: 1.8;
+}
+
+/* Glitch animation */
+@keyframes glitchTear {
+  0%   { clip-path: inset(0 0 0 0); filter: none; }
+  10%  { clip-path: inset(10% 0 70% 0); filter: hue-rotate(90deg) brightness(3); transform: translateX(-5px); }
+  20%  { clip-path: inset(60% 0 10% 0); filter: hue-rotate(180deg) brightness(2); transform: translateX(8px); }
+  30%  { clip-path: inset(30% 0 40% 0); filter: hue-rotate(270deg) invert(1); transform: translateX(-3px); }
+  40%  { clip-path: inset(0 0 0 0); filter: hue-rotate(360deg); transform: translateX(0); }
+  50%  { clip-path: inset(80% 0 5% 0); filter: brightness(5); }
+  60%  { clip-path: inset(0 0 0 0); filter: none; opacity: 0.7; }
+  70%  { filter: invert(1); opacity: 0.5; }
+  80%  { filter: none; opacity: 0.3; }
+  90%  { opacity: 0.1; }
+  100% { opacity: 0; display: none; }
+}
+
+#fake-intro.glitching {
+  animation: glitchTear 0.8s steps(1) forwards;
+  pointer-events: none;
+}
+
+/* ================================================================
+   PHASER CONTAINER
+   ================================================================ */
+#phaser-container {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: #0a0a0a;
+}
+
+#phaser-container canvas {
+  display: block;
+  max-width: 100vw;
+  max-height: 100vh;
+  image-rendering: pixelated;
+}
+
+/* ================================================================
+   DOM UI OVERLAYS (sit on top of Phaser canvas)
+   ================================================================ */
+#game-ui {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.ui-layer {
+  position: relative;
+  width: 390px; height: 700px;
+  overflow: hidden;
+}
+
+@media (max-height: 700px) {
+  .ui-layer { transform: scale(0.9); transform-origin: center center; }
+}
+@media (max-height: 600px) {
+  .ui-layer { transform: scale(0.8); transform-origin: center center; }
+}
+
+/* ── DIALOGUE BOX ── */
+#dialogue-box {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(8,8,8,0.94);
+  border-top: 3px solid #00ff41;
+  padding: 12px 14px 10px;
+  min-height: 120px;
+  display: none;
+  pointer-events: all;
+  cursor: pointer;
+  z-index: 22;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+#dialogue-box.warm {
+  border-top-color: #D4A843;
+  background: rgba(15, 10, 5, 0.94);
+}
+
+.dlg-speaker {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #ffd700;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  text-shadow: 0 0 6px #ffd700;
+  min-height: 14px;
+}
+
+.dlg-speaker.warm { color: #D4A843; text-shadow: 0 0 6px #D4A843; }
+
+.dlg-text {
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  color: #c8ffc8;
+  line-height: 1.4;
+  min-height: 54px;
+}
+
+.dlg-text.warm { color: #F0EAD8; }
+
+.dlg-continue {
+  text-align: right;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #00ff41;
+  animation: blink 1.2s step-end infinite;
+  margin-top: 4px;
+}
+.dlg-continue.warm { color: #D4A843; }
+
+/* ── CHOICE PANEL ── */
+#choice-panel {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(8,8,8,0.96);
+  border-top: 3px solid #00ff41;
+  padding: 8px;
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: all;
+  z-index: 23;
+  transition: border-color 0.3s;
+}
+
+#choice-panel.warm { border-top-color: #D4A843; }
+
+.choice-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 6px;
+  color: #336633;
+  text-align: center;
+  padding: 2px 0 4px;
+}
+.choice-title.warm { color: #7A6030; }
+
+.choice-btn {
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  color: #c8ffc8;
+  background: #0d1a0d;
+  border: 1px solid #00ff41;
+  padding: 8px 12px;
+  text-align: left;
+  cursor: pointer;
+  pointer-events: all;
+  line-height: 1.3;
+  transition: all 0.15s;
+  border-radius: 2px;
+  min-height: 44px;
+}
+
+.choice-btn:active, .choice-btn.selected {
+  background: #00ff41;
+  color: #000;
+}
+
+.choice-btn.warm {
+  color: #F0EAD8;
+  background: #120d05;
+  border-color: #D4A843;
+}
+.choice-btn.warm:active { background: #D4A843; color: #000; }
+
+/* ── HP BAR ── */
+#hp-bar-wrap {
+  position: absolute;
+  top: 8px; left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  z-index: 20;
+}
+
+.hp-label-row {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 6px;
+  color: #c8ffc8;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hp-bar-outer {
+  width: 100%;
+  height: 12px;
+  background: #1a0000;
+  border: 1px solid #ff4444;
+  overflow: hidden;
+}
+
+#hp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff4444, #ff8888);
+  transition: width 0.4s ease;
+  box-shadow: 0 0 5px #ff4444;
+}
+
+#hp-fill.good   { background: linear-gradient(90deg, #00cc44, #44ff88); box-shadow: 0 0 5px #00cc44; }
+#hp-fill.medium { background: linear-gradient(90deg, #ff8800, #ffcc44); box-shadow: 0 0 5px #ff8800; }
+#hp-fill.low    { background: linear-gradient(90deg, #ff4444, #ff8888); }
+
+/* ── BEAT-EM-UP CONTROLS ── */
+#beat-controls {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 160px;
+  display: none;
+  pointer-events: all;
+  z-index: 25;
+}
+
+.ctrl-left, .ctrl-right {
+  position: absolute;
+  bottom: 10px;
+  display: grid;
+  gap: 6px;
+}
+
+.ctrl-left {
+  left: 10px;
+  grid-template-columns: 60px 60px;
+  grid-template-rows: 60px 60px;
+}
+
+.ctrl-right {
+  right: 10px;
+  grid-template-columns: 72px 72px;
+  grid-template-rows: 60px 60px;
+}
+
+.ctrl-btn {
+  background: rgba(0,0,0,0.6);
+  border: 2px solid rgba(212,168,67,0.6);
+  border-radius: 8px;
+  color: #D4A843;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 3px;
+  cursor: pointer;
+  pointer-events: all;
+  touch-action: manipulation;
+  user-select: none;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.ctrl-btn:active { background: rgba(212,168,67,0.3); border-color: #D4A843; }
+.ctrl-btn .ctrl-icon { font-size: 20px; line-height: 1; }
+
+.ctrl-btn.merlin-btn {
+  border-color: rgba(100,180,100,0.8);
+  color: #88ee88;
+}
+.ctrl-btn.merlin-btn:active { background: rgba(100,180,100,0.3); }
+
+.ctrl-btn.on-cooldown {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Wave announcement */
+#wave-announce {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: #ffd700;
+  text-shadow: 0 0 20px #ffd700;
+  text-align: center;
+  display: none;
+  z-index: 30;
+  pointer-events: none;
+}
+
+/* ── DDR ── */
+#ddr-container {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  pointer-events: all;
+  z-index: 20;
+  background: rgba(5, 3, 15, 0.85);
+}
+
+.ddr-lanes {
+  flex: 1;
+  display: flex;
+  gap: 3px;
+  padding: 0 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ddr-lane {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.ddr-arrow {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 1;
+  pointer-events: none;
+  transition: opacity 0.1s;
+}
+
+.ddr-target-zone {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  height: 50px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  opacity: 0.4;
+  border-top: 2px solid rgba(255,255,255,0.2);
+  pointer-events: all;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.ddr-target-zone.hit-perfect { animation: hitPerfect 0.2s; }
+.ddr-target-zone.hit-good    { animation: hitGood 0.2s; }
+.ddr-target-zone.hit-miss    { animation: hitMiss 0.2s; }
+
+@keyframes hitPerfect {
+  0%   { background: rgba(255,215,0,0.6); transform: scale(1.15); }
+  100% { background: transparent; transform: scale(1); }
+}
+@keyframes hitGood {
+  0%   { background: rgba(100,200,255,0.4); transform: scale(1.08); }
+  100% { background: transparent; transform: scale(1); }
+}
+@keyframes hitMiss {
+  0%   { background: rgba(255,50,50,0.3); }
+  100% { background: transparent; }
+}
+
+.ddr-score-display {
+  position: absolute;
+  top: 8px; right: 12px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #D4A843;
+  text-align: right;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.ddr-feedback {
+  position: absolute;
+  top: 40%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.ddr-feedback.show { opacity: 1; }
+.ddr-feedback.perfect { color: #ffd700; }
+.ddr-feedback.good    { color: #88ccff; }
+.ddr-feedback.miss    { color: #ff4444; }
+
+.ddr-ms-cho {
+  position: absolute;
+  bottom: 70px; left: 10px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ── ROUTING PUZZLE ── */
+#routing-container {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  top: 180px;
+  background: rgba(5,8,5,0.95);
+  border-top: 2px solid #00ff41;
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  pointer-events: all;
+  z-index: 20;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.routing-header {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #00ff41;
+  padding: 10px 12px 6px;
+  border-bottom: 1px solid #336633;
+}
+
+.route-option {
+  padding: 10px 12px;
+  border-bottom: 1px solid #1a2a1a;
+  cursor: pointer;
+  pointer-events: all;
+  touch-action: manipulation;
+  transition: background 0.15s;
+}
+
+.route-option:active, .route-option:hover { background: #0d1a0d; }
+.route-option.selected { background: #001a00; border-left: 3px solid #00ff41; }
+.route-option.winner   { background: #001500; border-left: 3px solid #ffd700; }
+.route-option.blocked  { opacity: 0.6; }
+
+.route-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #ffd700;
+  margin-bottom: 5px;
+}
+
+.route-anthony {
+  font-family: 'VT323', monospace;
+  font-size: 15px;
+  color: #c8ffc8;
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+
+.route-merlin {
+  font-family: 'VT323', monospace;
+  font-size: 15px;
+  color: #aaddaa;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+/* Cyndie call overlay */
+#cyndie-call {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 35;
+  pointer-events: all;
+}
+
+.cyndie-phone {
+  font-size: 48px;
+  animation: ring 0.4s ease-in-out infinite alternate;
+}
+@keyframes ring { from { transform: rotate(-15deg); } to { transform: rotate(15deg); } }
+
+.cyndie-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #ffd700;
+}
+
+/* ── SCREEN FLASH ── */
+#screen-flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+#screen-flash.red  { background: rgba(255,50,50,0.4); }
+#screen-flash.gold { background: rgba(255,200,0,0.4); }
+#screen-flash.warm { background: rgba(212,168,67,0.5); }
+
+/* ── TITLE CARD ── */
+#title-card {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 40;
+  pointer-events: none;
+  text-align: center;
+  padding: 24px;
+}
+
+#title-card.show {
+  display: flex;
+  background: rgba(0,0,0,0.88);
+}
+
+.tc-chapter {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #336633;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.tc-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 28px;
+  color: #F0EAD8;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+.tc-title.green { color: #00ff41; font-family: 'Press Start 2P', monospace; font-size: 14px; }
+
+/* ── ENDING SCREEN ── */
+#ending-screen {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  padding: 40px 30px;
+  text-align: center;
+  pointer-events: all;
+  overflow: hidden;
+}
+
+.ending-text {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  color: #F0EAD8;
+  line-height: 1.8;
+  max-width: 320px;
+  opacity: 0;
+  animation: fadeInText 1.2s ease forwards;
+}
+
+.ending-tbc {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  color: #ffd700;
+  text-shadow: 0 0 20px #ffd700;
+  margin: 24px 0 16px;
+  opacity: 0;
+  animation: fadeInText 1.2s ease 0.5s forwards;
+}
+
+.ending-credits {
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  color: #777;
+  line-height: 2;
+  opacity: 0;
+  animation: fadeInText 1.2s ease 1s forwards;
+  text-align: left;
+}
+
+@keyframes fadeInText {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── DAMAGE / LEVEL OVERLAYS ── */
+#damage-overlay, #win-overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 45;
+  pointer-events: all;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+}
+
+#damage-overlay { background: rgba(80,0,0,0.92); }
+#win-overlay    { background: rgba(0,50,0,0.92); }
+
+.overlay-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: #ff4444;
+  text-shadow: 0 0 20px #ff4444;
+}
+.overlay-title.win { color: #00ff41; text-shadow: 0 0 20px #00ff41; }
+
+.overlay-msg {
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  color: #c8ffc8;
+  line-height: 1.4;
+}
+
+.overlay-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #000;
+  background: #00ff41;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  pointer-events: all;
+  margin-top: 8px;
+}
+.overlay-btn:active { transform: scale(0.97); }
