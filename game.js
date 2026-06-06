@@ -627,11 +627,10 @@ class PlaneScene extends Phaser.Scene{
     this.add.text(GW/2,GH*0.30,'ARRIVING',{fontFamily:'Press Start 2P,monospace',fontSize:'6px',color:'#336633',align:'center'}).setOrigin(0.5);
     this.add.text(GW/2,GH*0.345,'REAGAN NATIONAL (DCA)',{fontFamily:'Press Start 2P,monospace',fontSize:'6px',color:'#ffd700',align:'center'}).setOrigin(0.5);
     this.add.text(GW/2,GH*0.385,'Washington, DC',{fontFamily:'VT323,monospace',fontSize:'17px',color:'#00bb33',align:'center'}).setOrigin(0.5);
-    // Anthony walks across airport
+    // Anthony walks across airport — stays in his Madison outfit (pre-reveal).
     const ant=this.add.image(-30,GH*0.55,'anthony-crt').setScale(0.9);
-    let f=0;
     this.walkTimer=this.time.addEvent({delay:200,repeat:22,callback:()=>{
-      f++;ant.setTexture(f%2===0?'anthony-idle':'anthony-walk1');ant.x+=16;
+      ant.x+=16;ant.y=GH*0.55+(ant.x/16%2===0?-2:2);// subtle stride bob, same texture
     }});
     this.time.delayedCall(5000,()=>this._planeInterior());
   }
