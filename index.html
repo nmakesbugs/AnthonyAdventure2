@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Fredoka+One&family=Nunito:wght@400;700&display=swap">
-<link rel="stylesheet" href="style.css?v=0.1a">
+<link rel="stylesheet" href="style.css?v=0.2">
 </head>
 <body>
 
@@ -23,37 +23,40 @@
   <div class="fi-frame">
     <!-- Anthony SVG sprite (faithful to original) -->
     <div class="fi-sprite-area">
+      <!-- Anthony in his Madison outfit: fancy fitted tee + slacks. No green suit. -->
       <svg width="80" height="100" viewBox="0 0 64 80" style="image-rendering:pixelated">
-        <!-- legs -->
-        <rect x="14" y="58" width="10" height="18" rx="2" fill="#1a3a1a"/>
-        <rect x="30" y="58" width="10" height="18" rx="2" fill="#1a3a1a"/>
-        <!-- body / suit jacket -->
-        <rect x="8" y="28" width="38" height="32" rx="3" fill="#00cc33"/>
-        <!-- shirt collar -->
-        <rect x="26" y="28" width="2" height="8" fill="#004400"/>
-        <rect x="28" y="28" width="2" height="8" fill="#004400"/>
-        <!-- tie -->
-        <rect x="28" y="28" width="4" height="20" rx="1" fill="#003300"/>
-        <!-- cheetah jacket hint -->
-        <rect x="8" y="28" width="10" height="32" rx="2" fill="#225522"/>
-        <rect x="38" y="28" width="8" height="32" rx="2" fill="#225522"/>
-        <!-- arms -->
-        <rect x="0" y="30" width="8" height="22" rx="2" fill="#00cc33"/>
-        <rect x="46" y="30" width="8" height="22" rx="2" fill="#00cc33"/>
-        <!-- briefcase -->
-        <rect x="48" y="44" width="14" height="10" rx="1" fill="#004400"/>
-        <rect x="53" y="42" width="4" height="3" rx="1" fill="#336633"/>
+        <!-- slacks -->
+        <rect x="20" y="56" width="10" height="20" rx="2" fill="#5A5448"/>
+        <rect x="34" y="56" width="10" height="20" rx="2" fill="#5A5448"/>
+        <!-- shoes -->
+        <rect x="19" y="74" width="11" height="5" rx="1" fill="#2A2018"/>
+        <rect x="34" y="74" width="11" height="5" rx="1" fill="#2A2018"/>
+        <!-- fancy tee torso -->
+        <rect x="14" y="28" width="36" height="30" rx="4" fill="#26262C"/>
+        <rect x="16" y="30" width="7" height="26" rx="3" fill="#33333A"/>
+        <!-- v-neck + placket -->
+        <polygon points="28,28 32,38 36,28" fill="#1C1C20"/>
+        <rect x="30" y="29" width="3" height="10" fill="#1C1C20"/>
+        <circle cx="31.5" cy="33" r="0.9" fill="#8A8A90"/>
+        <circle cx="31.5" cy="37" r="0.9" fill="#8A8A90"/>
+        <!-- arms: short sleeve + skin forearm -->
+        <rect x="8" y="30" width="6" height="10" rx="2" fill="#26262C"/>
+        <rect x="50" y="30" width="6" height="10" rx="2" fill="#26262C"/>
+        <rect x="8" y="40" width="6" height="12" rx="2" fill="#C9A47A"/>
+        <rect x="50" y="40" width="6" height="12" rx="2" fill="#C9A47A"/>
         <!-- neck -->
-        <rect x="24" y="18" width="12" height="12" rx="2" fill="#00cc33"/>
+        <rect x="28" y="22" width="8" height="8" fill="#C9A47A"/>
         <!-- head -->
-        <rect x="16" y="4" width="28" height="20" rx="4" fill="#00cc33"/>
+        <rect x="22" y="6" width="20" height="18" rx="5" fill="#C9A47A"/>
+        <!-- hair -->
+        <rect x="20" y="3" width="24" height="7" rx="3" fill="#2A1A0E"/>
         <!-- eyes -->
-        <rect x="22" y="10" width="5" height="5" rx="1" fill="#000"/>
-        <rect x="33" y="10" width="5" height="5" rx="1" fill="#000"/>
-        <rect x="23" y="11" width="2" height="2" fill="#004400"/>
-        <rect x="34" y="11" width="2" height="2" fill="#004400"/>
+        <rect x="27" y="12" width="4" height="4" rx="1" fill="#201008"/>
+        <rect x="34" y="12" width="4" height="4" rx="1" fill="#201008"/>
+        <rect x="28" y="12" width="1.4" height="1.4" fill="#fff"/>
+        <rect x="35" y="12" width="1.4" height="1.4" fill="#fff"/>
         <!-- mouth -->
-        <rect x="24" y="18" width="12" height="2" fill="#004400"/>
+        <rect x="29" y="20" width="8" height="2" rx="1" fill="#7A4A30"/>
       </svg>
     </div>
 
@@ -204,7 +207,7 @@
 <!-- Phaser 3 -->
 <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
 <!-- Game -->
-<script src="game.js?v=0.1a"></script>
+<script src="game.js?v=0.2"></script>
 
 <script>
 // ── FAKE INTRO TAP HANDLER ──

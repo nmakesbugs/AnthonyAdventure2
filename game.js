@@ -181,26 +181,30 @@ function makeTex(scene,key,w,h,fn){
 }
 
 function buildTextures(scene){
-  /* ANTHONY — pre-reveal. Recognizable stylized policy guy in a muted suit,
-     phosphor-tinted to fit the CRT world but NOT a monochrome green blob. */
+  /* ANTHONY — Madison/travel outfit (Ch.1): fancy fitted tee + slacks.
+     NOT a green suit. Worn through prologue, plane, and the hotel reveal.
+     Cheetah jacket (anthony-idle etc.) only appears from Ch.2 onward. */
   makeTex(scene,'anthony-crt',48,92,g=>{
-    const sk=0xC9A47A,hr=0x2A1A0E,jk=0x33503F,lap=0x294035,pt=0x232A24,sh=0xD9D9C9,ti=0x9C7A33;
-    g.fillStyle(0x141810,1);g.fillRoundedRect(9,82,12,8,2);g.fillRoundedRect(27,82,12,8,2);
-    g.fillStyle(pt,1);g.fillRoundedRect(9,50,12,34,2);g.fillRoundedRect(27,50,12,34,2);
-    g.fillStyle(0x1a1f1a,1);g.fillRect(8,48,32,3);
-    g.fillStyle(jk,1);g.fillRoundedRect(5,20,38,32,4);
-    g.fillStyle(sh,1);g.fillTriangle(18,20,24,40,14,40);g.fillTriangle(24,20,30,40,34,40);
-    g.fillStyle(ti,1);g.fillRoundedRect(22,20,4,18,1);
-    g.fillStyle(lap,1);g.fillTriangle(18,20,22,34,13,30);g.fillTriangle(30,20,26,34,35,30);
-    g.fillStyle(jk,1);g.fillRoundedRect(0,22,7,26,2);g.fillRoundedRect(41,22,7,26,2);
+    const sk=0xC9A47A,hr=0x2A1A0E,tee=0x26262C,teeHi=0x33333A,slk=0x5A5448,shoe=0x2A2018;
+    g.fillStyle(shoe,1);g.fillRoundedRect(9,82,12,8,2);g.fillRoundedRect(27,82,12,8,2);
+    g.fillStyle(slk,1);g.fillRoundedRect(9,50,12,34,2);g.fillRoundedRect(27,50,12,34,2);
+    g.fillStyle(0x4A443A,1);g.fillRect(8,49,32,3);
+    g.fillStyle(tee,1);g.fillRoundedRect(6,20,36,32,5);
+    g.fillStyle(teeHi,1);g.fillRoundedRect(8,22,8,28,4);
+    g.fillStyle(0x1C1C20,1);g.fillTriangle(19,20,24,28,29,20);
+    g.fillStyle(0x1C1C20,1);g.fillRect(22,21,4,12);
+    g.fillStyle(0x8A8A90,1);g.fillCircle(24,24,1);g.fillCircle(24,28,1);
+    g.fillStyle(tee,1);g.fillRoundedRect(0,22,7,12,2);g.fillRoundedRect(41,22,7,12,2);
+    g.fillStyle(sk,1);g.fillRoundedRect(0,33,7,15,2);g.fillRoundedRect(41,33,7,15,2);
     g.fillStyle(sk,1);g.fillEllipse(3,49,7,7);g.fillEllipse(45,49,7,7);
     g.fillStyle(sk,1);g.fillRect(20,16,8,6);
     g.fillStyle(sk,1);g.fillRoundedRect(16,8,16,13,3);g.fillEllipse(24,12,23,19);
     g.fillStyle(hr,1);g.fillEllipse(24,5,24,11);g.fillRoundedRect(13,3,22,6,2);
+    g.fillStyle(0x3A2614,1);g.fillRect(15,4,18,2);
     g.fillStyle(0x201008,1);g.fillEllipse(20,12,3,4);g.fillEllipse(28,12,3,4);
     g.fillStyle(0xEAEAEA,1);g.fillCircle(21,11,1);g.fillCircle(29,11,1);
     g.fillStyle(hr,1);g.fillRect(17,8,5,1);g.fillRect(26,8,5,1);
-    g.fillStyle(0x7A4A30,1);g.fillRect(21,18,6,1);
+    g.fillStyle(0x7A4A30,1);g.fillRect(20,18,8,1);g.fillRect(21,19,6,1);
   });
 
   /* ANTHONY FULL COLOR (post-reveal) */
@@ -264,25 +268,29 @@ function buildTextures(scene){
   makeTex(scene,'merlin-tackle',145,115,g=>drawMerlin(g,2));
   makeTex(scene,'merlin-sit',145,115,g=>drawMerlin(g,0));
 
-  /* NICK — pre-reveal. The analyst: muted slate suit, glasses, distinct from
-     Anthony but the same clean stylized CRT-world person, not a green blob. */
+  /* NICK — Madison: black V-neck tee, jeans, boots, grey-brown hair.
+     No glasses. No suit. Casual, distinct from Anthony. */
   makeTex(scene,'nick-crt',48,92,g=>{
-    const sk=0xCBA079,hr=0x3A2A18,jk=0x3C4654,lap=0x323b47,pt=0x222730,sh=0xDADAE2,ti=0x6E4F6A;
-    g.fillStyle(0x101216,1);g.fillRoundedRect(9,82,12,8,2);g.fillRoundedRect(27,82,12,8,2);
-    g.fillStyle(pt,1);g.fillRoundedRect(9,50,12,34,2);g.fillRoundedRect(27,50,12,34,2);
-    g.fillStyle(0x181b22,1);g.fillRect(8,48,32,3);
-    g.fillStyle(jk,1);g.fillRoundedRect(5,20,38,32,4);
-    g.fillStyle(sh,1);g.fillTriangle(18,20,24,40,14,40);g.fillTriangle(24,20,30,40,34,40);
-    g.fillStyle(ti,1);g.fillRoundedRect(22,20,4,18,1);
-    g.fillStyle(lap,1);g.fillTriangle(18,20,22,34,13,30);g.fillTriangle(30,20,26,34,35,30);
-    g.fillStyle(jk,1);g.fillRoundedRect(0,22,7,26,2);g.fillRoundedRect(41,22,7,26,2);
+    const sk=0xCBA079,hr=0x6B5E4A,vne=0x161616,vneHi=0x222222,jean=0x3A4A66,jeanHi=0x46587A,boot=0x2A1C10;
+    g.fillStyle(boot,1);g.fillRoundedRect(8,80,13,10,2);g.fillRoundedRect(27,80,13,10,2);
+    g.fillStyle(0x1A1208,1);g.fillRect(8,87,13,3);g.fillRect(27,87,13,3);
+    g.fillStyle(jean,1);g.fillRoundedRect(9,50,12,32,2);g.fillRoundedRect(27,50,12,32,2);
+    g.fillStyle(jeanHi,1);g.fillRect(11,52,2,28);g.fillRect(29,52,2,28);
+    g.fillStyle(0x2A3650,1);g.fillRect(8,49,32,3);
+    g.fillStyle(vne,1);g.fillRoundedRect(6,20,36,32,4);
+    g.fillStyle(vneHi,1);g.fillRoundedRect(8,22,7,26,3);
+    g.fillStyle(sk,1);g.fillTriangle(19,20,24,32,29,20);
+    g.fillStyle(vne,1);g.fillRoundedRect(0,22,7,13,2);g.fillRoundedRect(41,22,7,13,2);
+    g.fillStyle(sk,1);g.fillRoundedRect(0,34,7,14,2);g.fillRoundedRect(41,34,7,14,2);
     g.fillStyle(sk,1);g.fillEllipse(3,49,7,7);g.fillEllipse(45,49,7,7);
     g.fillStyle(sk,1);g.fillRect(20,16,8,6);
     g.fillStyle(sk,1);g.fillRoundedRect(16,8,16,13,3);g.fillEllipse(24,12,23,19);
-    g.fillStyle(hr,1);g.fillEllipse(24,5,24,10);g.fillRoundedRect(14,3,20,5,2);
-    g.fillStyle(0x1a1a1a,1);g.fillRoundedRect(16,10,7,5,2);g.fillRoundedRect(25,10,7,5,2);g.fillRect(23,11,2,1);
-    g.fillStyle(0x9fd0d0,0.5);g.fillRect(17,11,5,3);g.fillRect(26,11,5,3);
-    g.fillStyle(0x201008,1);g.fillEllipse(20,12,2,3);g.fillEllipse(28,12,2,3);
+    g.fillStyle(hr,1);g.fillEllipse(24,5,25,11);g.fillRoundedRect(12,3,24,6,2);
+    g.fillStyle(0x7D7060,1);g.fillRect(14,4,8,2);g.fillRect(28,4,6,2);
+    g.fillStyle(0x201008,1);g.fillEllipse(20,12,3,4);g.fillEllipse(28,12,3,4);
+    g.fillStyle(0xEAEAEA,1);g.fillCircle(21,11,1);g.fillCircle(29,11,1);
+    g.fillStyle(hr,1);g.fillRect(17,8,5,1);g.fillRect(26,8,5,1);
+    g.fillStyle(0x9A8468,0.4);g.fillRect(18,18,12,3);
     g.fillStyle(0x7A4A30,1);g.fillRect(21,18,6,1);
   });
 
@@ -687,7 +695,8 @@ class HotelScene extends Phaser.Scene{
       this.time.delayedCall(750,()=>{
         window.__gameState.aesthetic='chaos';
         this.add.image(GW/2,GH/2,'bg-hotel').setDepth(0);
-        this.anthony.setTexture('anthony-idle').setScale(1.0).setDepth(3);
+        // Anthony stays in his Madison outfit — the cheetah jacket comes in Ch.2.
+        this.anthony.setScale(1.0).setDepth(3);
         this.merlin=this.add.image(GW*0.65,GH*0.53,'merlin-idle').setScale(0.62).setDepth(4).setAlpha(0);
         this.tweens.add({targets:this.merlin,alpha:1,y:GH*0.53,duration:400});
         Audio.boof();
@@ -702,13 +711,14 @@ class HotelScene extends Phaser.Scene{
       {speaker:'MERLIN',text:"OH. This is not the house. This is a very different house. Very small. But it smells like Anthony. Merlin loves Anthony. The couch movie nights. The big shepherds. This is fine."},
       {speaker:'ANTHONY',text:"...Merlin."},
       {speaker:'MERLIN',text:"Hello Anthony. Merlin is here."},
-      {speaker:'ANTHONY',text:"You were in my suitcase."},
+      {speaker:'ANTHONY',text:"You were in my suitcase. That suitcase was checked. At an airport. With TSA."},
       {speaker:'MERLIN',text:"Yes. Merlin went in there. And then Merlin was here. It worked out very well."},
-      {speaker:'ANTHONY',text:"How did you get into my— you know what. Never mind. I have a Bernie Sanders meeting."},
-      {speaker:'MERLIN',text:"Merlin does not know who that is. He smells important. Is he giving out treats?"},
-      {speaker:'ANTHONY',text:"He is NOT— he's a United States Senator."},
+      {speaker:'NARRATOR',text:"Nobody has asked Merlin how he left the house. Merlin has not volunteered this information. The investigation is ongoing."},
+      {speaker:'ANTHONY',text:"Okay. New plan. You're a fact now, not a question. I have a Senate HELP hearing in nine hours and I am going to walk in there prepared."},
+      {speaker:'MERLIN',text:"Merlin smells a man named Bernie. Is he important? Is he giving out treats?"},
+      {speaker:'ANTHONY',text:"He's a United States Senator, and— how do you already— you know what, fine. We adapt. We always adapt."},
       {speaker:'MERLIN',text:"That sounds like a very good dog. Merlin supports this."},
-      {speaker:'ANTHONY',text:"oh noooo."},
+      {speaker:'ANTHONY',text:"...oh noooo. But in a manageable way."},
     ],()=>this._nickChoice());
   }
   _nickChoice(){
@@ -719,12 +729,12 @@ class HotelScene extends Phaser.Scene{
       if(i===0){
         Dlg.show([
           {speaker:'NICK',text:"...why is Merlin in DC."},
-          {speaker:'ANTHONY',text:"I don't know."},
-          {speaker:'NICK',text:"How did he get in your suitcase."},
-          {speaker:'ANTHONY',text:"I genuinely do not know."},
-          {speaker:'NICK',text:"Is he okay?"},
-          {speaker:'ANTHONY',text:"He seems amazing actually. Very comfortable with the situation."},
-          {speaker:'NICK',text:"Yeah. That tracks. Don't let him near the Senate cafeteria."},
+          {speaker:'ANTHONY',text:"Unknown. I've decided to treat it as a logistics problem, not a metaphysics problem."},
+          {speaker:'NICK',text:"Okay but how did he get in your suitcase. Like physically. How."},
+          {speaker:'ANTHONY',text:"Nick. Nobody has asked Merlin how he left the house. He has not volunteered it. I'm told the investigation is ongoing."},
+          {speaker:'NICK',text:"Who's investigating—"},
+          {speaker:'ANTHONY',text:"Unclear. Moving on. I've got my talking points, the RFI numbers cold, and a backup framework if Bernie goes off-script."},
+          {speaker:'NICK',text:"...you actually sound ready. Don't let the dog near the Senate cafeteria."},
           {speaker:'MERLIN',text:"Merlin heard cafeteria. Merlin is very interested in this."},
         ],()=>this._titleCard());
       }else{
@@ -737,7 +747,43 @@ class HotelScene extends Phaser.Scene{
       }
     });
   }
-  _titleCard(){showTitleCard('CHAPTER TWO','DC TRAFFIC IS A THREAT TO NATIONAL SECURITY',()=>this.scene.start('Routing'));}
+  _titleCard(){this.scene.start('RevealTitle');}
+}
+
+/* ── SCENE: REAL TITLE REVEAL (only after the hotel Merlin reveal) ── */
+class RevealTitleScene extends Phaser.Scene{
+  constructor(){super('RevealTitle');}
+  create(){
+    setScene('revealtitle');hideAllUI();
+    window.__gameState.aesthetic='chaos';
+    this.add.rectangle(GW/2,GH/2,GW,GH,0x140d05);
+    // Warm vignette + confetti-ish specks
+    for(let i=0;i<40;i++){
+      const x=(i*97)%GW,y=(i*53)%GH;
+      this.add.rectangle(x,y,2,2,0xD4A843,0.25);
+    }
+    this.add.image(GW*0.30,GH*0.50,'anthony-crt').setScale(1.05).setDepth(3);
+    this.add.image(GW*0.66,GH*0.52,'merlin-idle').setScale(0.62).setDepth(4);
+    this.add.text(GW/2,GH*0.16,'ANTHONY & MERLIN',{fontFamily:'Fredoka One,sans-serif',fontSize:'24px',color:'#D4A843',align:'center',stroke:'#3a2400',strokeThickness:4}).setOrigin(0.5).setDepth(6);
+    this.add.text(GW/2,GH*0.255,'THE ADVENTURE GETS WEIRD',{fontFamily:'Press Start 2P,monospace',fontSize:'9px',color:'#F0EAD8',align:'center'}).setOrigin(0.5).setDepth(6);
+    this.add.text(GW/2,GH*0.31,'( it does )',{fontFamily:'VT323,monospace',fontSize:'16px',color:'#88ee88',align:'center'}).setOrigin(0.5).setDepth(6);
+    const tap=this.add.text(GW/2,GH*0.86,'▶ TAP TO CONTINUE',{fontFamily:'Press Start 2P,monospace',fontSize:'8px',color:'#D4A843'}).setOrigin(0.5).setDepth(6);
+    this.tweens.add({targets:tap,alpha:0,duration:600,yoyo:true,repeat:-1,ease:'Step'});
+    Audio.fanfare();
+    this.input.once('pointerdown',()=>{Audio.click();this._toChapterTwo();});
+    // Fallback auto-advance so the scene is never a dead end
+    this.time.delayedCall(9000,()=>{if(this.scene.isActive())this._toChapterTwo();});
+  }
+  _toChapterTwo(){
+    if(this._advanced)return;this._advanced=true;
+    // Anthony dons the cheetah jacket — Ch.2 begins.
+    Dlg.show([
+      {speaker:'NARRATOR',text:"Anthony reached into the suitcase, past the dog-shaped impossibility, and pulled out the cheetah jacket."},
+      {speaker:'ANTHONY',text:"If I'm walking into the United States Senate with a stowaway dog, I'm doing it in the jacket. Confidence is a strategy."},
+      {speaker:'MERLIN',text:"The jacket smells like the good days. Merlin trusts the jacket."},
+      {speaker:'ANTHONY',text:"Alright, Merlin. You read smells, I read rooms. Between us we're basically a functioning delegation."},
+    ],()=>showTitleCard('CHAPTER TWO','DC TRAFFIC IS A THREAT TO NATIONAL SECURITY',()=>this.scene.start('Routing')));
+  }
 }
 
 /* ── SCENE: ROUTING PUZZLE ── */
@@ -846,9 +892,11 @@ class RoutingScene extends Phaser.Scene{
         {speaker:'ANTHONY',text:"..."},
         {speaker:'📱 CYNDIE',text:"Is that MERLIN. Did you bring Merlin to the United States Senate."},
         {speaker:'MERLIN',text:"BOOF BOOF."},
-        {speaker:'📱 CYNDIE',text:"We are going to have a very long conversation about this."},
-        {speaker:'ANTHONY',text:"Yes. Definitely. After the hearing."},
-        {speaker:'ANTHONY',text:"Cyndie is going to be fine. She's fine. We're fine."},
+        {speaker:'📱 CYNDIE',text:"How did he even get out of the house. The doors were locked. I locked them."},
+        {speaker:'ANTHONY',text:"Cyndie, I have looked into this personally. Nobody has asked Merlin how he left the house. He has not volunteered it. The investigation is ongoing."},
+        {speaker:'📱 CYNDIE',text:"...the investigation. Anthony."},
+        {speaker:'ANTHONY',text:"I know. But here's where we are: I've got my talking points, the jacket, and a dog who's somehow opening doors for me. I'm going to make it work. I always make it work."},
+        {speaker:'📱 CYNDIE',text:"...you actually sound on top of it. We are STILL talking about this later."},
         {speaker:'MERLIN',text:"Merlin said hello to Cyndie. Cyndie did not hear it. Merlin said it anyway."},
       ],()=>{
         document.getElementById('routing-container').style.display='flex';
@@ -873,6 +921,7 @@ class BeatEmUpScene extends Phaser.Scene{
     this.player={x:GW*0.22,y:this.groundY,w:50,h:88,state:'idle',stateTimer:0,facing:1,immune:false,immuneTimer:0};
     this.merlinState={x:GW*0.1,y:this.groundY+20,tackling:false,tackleTarget:null,tackleTimer:0,cooldown:0,returnTimer:0};
     this.enemies=[];this.projectiles=[];
+    this.enemyMargin=40;// horizontal bound so staffers stay on-screen
     this.wave=0;this.waveActive=false;this.waveCleared=false;this.scriptedFired=false;
     this.gameOver=false;
     // Sprites
@@ -945,9 +994,10 @@ class BeatEmUpScene extends Phaser.Scene{
   _doSpawn(wave){
     const types=['enemy-lanyard','enemy-briefcase','enemy-kombucha'];
     const counts=[4,6,6];const count=counts[wave-1]||4;
+    const EM=this.enemyMargin;// keep spawns on-screen and reachable
     for(let i=0;i<count;i++){
       const side=i%2===0?1:-1;
-      const tx=side===1?GW+60:-60;
+      const tx=side===1?(GW-EM-(i%3)*10):(EM+(i%3)*10);
       const ty=this.groundY;
       const typeIdx=wave===1?(i%2):(i%3);
       const e={
@@ -1044,6 +1094,8 @@ class BeatEmUpScene extends Phaser.Scene{
           e.throwTimer=3.0;this._spawnProjectile(e.x,e.y-60,'proj-kombucha',Math.sign(dx)*160,-200);
         }
       }
+      // Clamp so staffers never drift off-screen — always visible/playable.
+      e.x=Math.max(this.enemyMargin,Math.min(GW-this.enemyMargin,e.x));
     });
   }
   _updateProjectiles(s){
@@ -1163,10 +1215,12 @@ class BeatEmUpScene extends Phaser.Scene{
       Dlg.show([
         {speaker:'NARRATOR',text:"And then Staffer 1 got close enough to see the jacket clearly."},
         {speaker:'NARRATOR',text:"It spread through the crowd like a quiet, unexpected thing."},
-        {speaker:'ANTHONY',text:"Gentlemen. This jacket is a choice. And I stand by it every single time."},
-        {speaker:'NARRATOR',text:"The staffers who had been enraged... paused. They had not seen a jacket like that in three years of DC."},
-        {speaker:'NARRATOR',text:"They stepped aside. Not out of defeat. Out of something like respect."},
-        {speaker:'MERLIN',text:"The sad people are less sad now. Merlin did not do this. The jacket did this. Merlin respects the jacket."},
+        {speaker:'ANTHONY',text:"Gentlemen. The jacket is a choice. The dog is non-negotiable. And I have a hearing. Let's all be reasonable."},
+        {speaker:'NARRATOR',text:"Merlin, sensing a lull, sat down in the exact center of the crowd and offered his paw to the nearest staffer. The staffer, on instinct, shook it."},
+        {speaker:'MERLIN',text:"Merlin did a meeting. Merlin is good at meetings. The sad people are less sad now."},
+        {speaker:'STAFFER',text:"...wait, is the dog with him? Who processed the dog? Is there a form for the dog?"},
+        {speaker:'STAFFER',text:"Nobody knows how the dog got here. It's being looked into. Just— let him through, he's clearly part of it now."},
+        {speaker:'NARRATOR',text:"The staffers stepped aside. Not out of defeat. Out of something like procedure. Merlin had, somehow, become part of the process."},
       ],()=>this._endBattle());
     }
   }
@@ -1208,7 +1262,7 @@ class OperativeScene extends Phaser.Scene{
     Dlg.show([
       {speaker:'NARRATOR',text:"The final checkpoint before the Senate chamber corridor. A man in a black suit. Earpiece. Arms at his sides. Not Capitol Police. Not Senate security. Something else."},
       {speaker:'OPERATIVE',text:"ID and congressional access credentials."},
-      {speaker:'ANTHONY',text:"Absolutely. I'm Anthony Mautino, Veeva Systems, Site Solutions. I'm here for the HELP Committee. Bernie Sanders' office sent the invitation."},
+      {speaker:'ANTHONY',text:"Absolutely. Anthony Corso, VP Public Policy, Veeva. I'm here for the HELP Committee — Bernie Sanders' office sent the invitation. I can have the confirmation up in four seconds."},
       {speaker:'OPERATIVE',text:"I've seen 14 forged Sanders invitations this week."},
       {speaker:'ANTHONY',text:"That is—okay. Valid. But mine is real."},
     ],()=>this._choice1());
@@ -1254,11 +1308,17 @@ class OperativeScene extends Phaser.Scene{
         this.operative.setTexture('operative-soft');
         Dlg.show([
           {speaker:'OPERATIVE',text:"Senate chamber is on the left. You have a 12-minute window before the session opens."},
-          {speaker:'OPERATIVE',text:"...the dog can't go in."},
-          {speaker:'MERLIN',text:"Merlin will wait here. Merlin and the man with the good dogs will talk."},
-          {speaker:'ANTHONY',text:"You cannot— he just made a friend with a CIA operative. Of course he did."},
-          {speaker:'NARRATOR',text:"The CRT green aesthetic, which had been fighting for control since the hotel room, fully conceded. Anthony walked toward the chamber. Merlin stayed with the operative. They had things to discuss."},
-          {speaker:'NARRATOR',text:"Specifically: Murphy, Franklin, and Rose."},
+          {speaker:'ANTHONY',text:"Appreciated. And the dog comes with me — he's part of the delegation now."},
+          {speaker:'OPERATIVE',text:"Officially, no animals past this point."},
+          {speaker:'MERLIN',text:"Merlin is not an animal. Merlin is a colleague. Merlin is here on smell business."},
+          {speaker:'OPERATIVE',text:"...Unofficially — he read three goldens off me through a sealed tote. That's not a pet, that's an asset. Dog exception. He's cleared. By vibes."},
+          {speaker:'ANTHONY',text:"Did you just clear my dog faster than you cleared me?"},
+          {speaker:'OPERATIVE',text:"Yes. I'll note it in the file."},
+          {speaker:'ANTHONY',text:"There's a file?"},
+          {speaker:'OPERATIVE',text:"There's always a file. ITEM: subject canine, origin unestablished. How he left the residence remains an open federal inquiry. We're aware. We're just not stopping it."},
+          {speaker:'MERLIN',text:"Merlin has not volunteered this information. Merlin is also allowed inside. Both things are true."},
+          {speaker:'NARRATOR',text:"The CRT green aesthetic, which had been fighting for control since the hotel room, fully conceded. Anthony and Merlin walked toward the chamber together — one credentialed, one cleared by charisma, both federally unexplained."},
+          {speaker:'ANTHONY',text:"I argued us to the one-yard line. He scored on smell. I'll take the assist."},
         ],()=>showTitleCard('CHAPTER FIVE','THE SENATE SHUFFLE',()=>this.scene.start('DDR')));
       });
     });
@@ -1266,11 +1326,14 @@ class OperativeScene extends Phaser.Scene{
 }
 
 /* ── SCENE: DDR (SENATE SHUFFLE) ── */
+// Black Merlin paw — replaces the old blue circular-arrows (🔄) icon.
+const PAW_SVG='<svg viewBox="0 0 24 24" width="26" height="26" style="display:block;margin:0 auto"><g fill="#0a0a0a"><ellipse cx="12" cy="16" rx="6.2" ry="5.2"/><ellipse cx="5.5" cy="9.5" rx="2.3" ry="3"/><ellipse cx="9.8" cy="6.4" rx="2.3" ry="3.3"/><ellipse cx="14.2" cy="6.4" rx="2.3" ry="3.3"/><ellipse cx="18.5" cy="9.5" rx="2.3" ry="3"/></g></svg>';
+function ddrSetIcon(el,icon){if(typeof icon==='string'&&icon.charAt(0)==='<')el.innerHTML=icon;else el.textContent=icon;}
 const DDR_LANES=[
   {key:'L',icon:'👈',label:'LEFT'},
   {key:'R',icon:'👉',label:'RIGHT'},
   {key:'C',icon:'👏',label:'CLAP'},
-  {key:'S',icon:'🔄',label:'SPIN'},
+  {key:'S',icon:PAW_SVG,label:'MERLIN'},
   {key:'T',icon:'🦶',label:'STOMP'},
 ];
 // Beat sequence: {beat, lane} — beat * 600ms = arrival time (offset from startTime)
@@ -1309,8 +1372,10 @@ class DDRScene extends Phaser.Scene{
       {speaker:'MS. CHO',text:"Senator Sanders is aware. He finds it consistent with his broader critique of government contractor culture."},
       {speaker:'ANTHONY',text:"Does Dylan know what he did?"},
       {speaker:'MS. CHO',text:"Dylan is at Google. He does not know."},
+      {speaker:'MS. CHO',text:"One administrative note. There is an open federal inquiry into how your dog departed your residence. It remains unresolved. The chamber will log it as a pending matter and proceed regardless."},
+      {speaker:'ANTHONY',text:"Honestly? That's the most reassuring sentence I've heard all day. I'll take 'pending.' I work great with pending."},
       {speaker:'MERLIN',text:"Merlin wants to dance. Merlin is very good at dancing. Or maybe not. But Merlin is very willing."},
-      {speaker:'ANTHONY',text:"oh noooo."},
+      {speaker:'ANTHONY',text:"Then we dance. Watch my feet, follow the beat, I'll count it out. We've improvised worse today."},
     ],()=>this._startDDR());
   }
   _startDDR(){
@@ -1327,7 +1392,7 @@ class DDRScene extends Phaser.Scene{
       const lane=document.createElement('div');
       lane.className='ddr-lane';lane.id='ddrlane-'+i;
       const target=document.createElement('div');
-      target.className='ddr-target-zone';target.textContent=ld.icon;
+      target.className='ddr-target-zone';ddrSetIcon(target,ld.icon);
       const lbl=document.createElement('div');
       lbl.style.cssText='position:absolute;bottom:62px;width:100%;text-align:center;font-family:Press Start 2P,monospace;font-size:5px;color:#555';
       lbl.textContent=ld.label;
@@ -1362,7 +1427,7 @@ class DDRScene extends Phaser.Scene{
     const laneEl=this.laneEls[lane];if(!laneEl)return;
     const el=document.createElement('div');
     el.className='ddr-arrow';
-    el.textContent=DDR_LANES[lane].icon;
+    ddrSetIcon(el,DDR_LANES[lane].icon);
     el.style.top='-40px';
     if(isFinal)el.style.filter='drop-shadow(0 0 6px gold)';
     laneEl.appendChild(el);
@@ -1475,9 +1540,10 @@ class DDRScene extends Phaser.Scene{
     if(this.mscho){this.mscho.setVisible(true).setPosition(GW*0.5,GH*0.5);}
     Dlg.show([
       {speaker:'MS. CHO',text:"Access granted. Senator Sanders has been notified."},
-      {speaker:'ANTHONY',text:"That worked. That actually worked."},
-      {speaker:'MERLIN',text:"Merlin was very good at that. Merlin is very confident about that. Merlin danced the best."},
-      {speaker:'ANTHONY',text:"You were spectacular. Objectively."},
+      {speaker:'ANTHONY',text:"There it is. Read the room, hit the beats, close the deal. That's the job."},
+      {speaker:'MS. CHO',text:"For the record, the building has begun... adjusting. Two members asked for the dog's read on a markup this morning. The cafeteria added a 'smells correct' line item. Internally we're calling it the Merlin Standard."},
+      {speaker:'MERLIN',text:"Merlin was very good at that. Merlin danced the best. The whole city agrees now."},
+      {speaker:'ANTHONY',text:"You were spectacular, objectively. I did the counting. We're a team — I run the plan, you run the vibes."},
       {speaker:'MERLIN',text:"Merlin knows."},
     ],()=>showTitleCard('CHAPTER SIX','ANTHONY MEETS BERNIE',()=>this.scene.start('Ending')));
   }
@@ -1518,16 +1584,25 @@ class EndingScene extends Phaser.Scene{
       <div class="ending-text" style="animation-delay:2.4s">
         ...so had the dog.
       </div>
+      <div class="ending-text" style="animation-delay:3.0s">
+        Washington had quietly begun to operate on dog logic.<br>
+        If it smells correct, proceed. Nobody fought it.
+      </div>
+      <div class="ending-inquiry" style="animation-delay:3.6s">
+        FEDERAL INQUIRY STATUS: ONGOING<br>
+        <span>(how Merlin left the house remains unexplained)</span>
+      </div>
       <div class="ending-tbc">TO BE CONTINUED</div>
       <div class="ending-credits" style="animation-delay:1.5s">
-        ANTHONY — doing his best, always<br>
-        MERLIN — excellent dog, chaotic good<br>
+        ANTHONY CORSO — VP Public Policy, Veeva; ran the plan<br>
+        MERLIN — excellent dog, chaotic good, ran the vibes<br>
         THE CHEETAH JACKET — never in doubt<br>
         BERNIE SANDERS — waiting patiently<br>
         CYNDIE — very confused, call her back<br>
-        MS. PATRICIA CHO — a professional<br>
-        THE THREE GOLDENS — they exist somewhere<br>
-        NICK — this is your fault
+        MS. PATRICIA CHO — a professional; coined "the Merlin Standard"<br>
+        THE THREE GOLDENS — Murphy, Franklin, and Rose<br>
+        THE FEDERAL INQUIRY — ongoing<br>
+        NICK — black v-neck, still asking how the dog got out
       </div>
     `;
     this.time.delayedCall(2000,()=>Audio.endChime());
@@ -1553,9 +1628,47 @@ const config={
   width:GW,height:GH,
   backgroundColor:'#050f05',
   scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH},
-  scene:[BootScene,TitleScene,PrologueScene,PlaneScene,HotelScene,RoutingScene,BeatEmUpScene,OperativeScene,DDRScene,EndingScene],
+  scene:[BootScene,TitleScene,PrologueScene,PlaneScene,HotelScene,RevealTitleScene,RoutingScene,BeatEmUpScene,OperativeScene,DDRScene,EndingScene],
 };
+
+/* ── DEBUG MENU (TEMPORARY) ──────────────────────────────────────
+   Set DEBUG_MENU=false (or delete this block + the buildDebugMenu()
+   call below) to remove. Small 🐾 button, top-right, jumps to scenes. */
+const DEBUG_MENU=true;
+const DEBUG_SCENES=[
+  ['Title','Title'],['Prologue','Prologue'],['Plane / Travel','Plane'],
+  ['Hotel Reveal','Hotel'],['Real Title','RevealTitle'],['Routing','Routing'],
+  ['BeatEmUp','BeatEmUp'],['CIA','Operative'],['DDR','DDR'],['Ending','Ending'],
+];
+const DEBUG_CHAOS=['RevealTitle','Routing','BeatEmUp','Operative','DDR','Ending'];
+function __debugJump(key){
+  const g=window.__phaserGame;if(!g)return;
+  const st=window.__gameState;
+  st.hp=100;st.maxHp=100;
+  st.aesthetic=DEBUG_CHAOS.includes(key)?'chaos':'crt';
+  hideAllUI();
+  g.scene.getScenes(true).forEach(s=>{if(s.scene.key!=='Boot')g.scene.stop(s.scene.key);});
+  g.scene.start(key);
+}
+function buildDebugMenu(){
+  if(!DEBUG_MENU||document.getElementById('debug-menu'))return;
+  const wrap=document.createElement('div');wrap.id='debug-menu';
+  const btn=document.createElement('button');btn.id='debug-toggle';btn.textContent='🐾';btn.title='Debug: jump to scene';
+  const panel=document.createElement('div');panel.id='debug-panel';
+  const hdr=document.createElement('div');hdr.id='debug-hdr';hdr.textContent='DEBUG · JUMP';panel.appendChild(hdr);
+  DEBUG_SCENES.forEach(([label,key])=>{
+    const b=document.createElement('button');b.className='debug-jump';b.textContent=label;
+    const go=(e)=>{if(e)e.preventDefault();__debugJump(key);panel.classList.remove('open');};
+    b.addEventListener('click',go);
+    b.addEventListener('touchend',go,{passive:false});
+    panel.appendChild(b);
+  });
+  btn.addEventListener('click',()=>panel.classList.toggle('open'));
+  wrap.appendChild(btn);wrap.appendChild(panel);
+  document.body.appendChild(wrap);
+}
 
 window.__anthonyMerlinBootGame=()=>{
   window.__phaserGame=new Phaser.Game(config);
+  buildDebugMenu();
 };

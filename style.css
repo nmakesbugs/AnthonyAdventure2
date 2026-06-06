@@ -669,10 +669,68 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0a0a; t
   text-align: left;
 }
 
+.ending-inquiry {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #ff8866;
+  letter-spacing: 1px;
+  line-height: 1.8;
+  margin: 14px 0 4px;
+  border: 1px solid rgba(255,136,102,0.4);
+  border-radius: 4px;
+  padding: 8px 12px;
+  background: rgba(40,16,8,0.5);
+  opacity: 0;
+  animation: fadeInText 1.2s ease forwards;
+}
+.ending-inquiry span {
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  color: #c9a; letter-spacing: 0;
+}
+
 @keyframes fadeInText {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ── DEBUG MENU (TEMPORARY) ── */
+#debug-menu {
+  position: fixed; top: 6px; right: 6px;
+  z-index: 99999;
+  font-family: 'Press Start 2P', monospace;
+}
+#debug-toggle {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background: rgba(0,0,0,0.55);
+  color: #D4A843; font-size: 16px;
+  cursor: pointer; opacity: 0.5;
+  touch-action: manipulation;
+}
+#debug-toggle:hover, #debug-toggle:active { opacity: 1; }
+#debug-panel {
+  display: none; flex-direction: column; gap: 4px;
+  margin-top: 6px; padding: 6px;
+  background: rgba(10,10,12,0.96);
+  border: 1px solid #444; border-radius: 8px;
+  max-height: 82vh; overflow: auto;
+}
+#debug-panel.open { display: flex; }
+#debug-hdr {
+  font-size: 6px; color: #888;
+  padding: 2px 4px 4px; text-align: center;
+}
+.debug-jump {
+  font-family: 'VT323', monospace; font-size: 15px;
+  color: #cfe; background: #1a1a22;
+  border: 1px solid #3a3a4a; border-radius: 4px;
+  padding: 6px 10px; text-align: left;
+  cursor: pointer; white-space: nowrap;
+  touch-action: manipulation;
+}
+.debug-jump:active { background: #D4A843; color: #000; }
 
 /* ── DAMAGE / LEVEL OVERLAYS ── */
 #damage-overlay, #win-overlay {
