@@ -766,7 +766,7 @@ class RevealTitleScene extends Phaser.Scene{
     this.add.image(GW*0.66,GH*0.52,'merlin-idle').setScale(0.62).setDepth(4);
     this.add.text(GW/2,GH*0.16,'ANTHONY & MERLIN',{fontFamily:'Fredoka One,sans-serif',fontSize:'24px',color:'#D4A843',align:'center',stroke:'#3a2400',strokeThickness:4}).setOrigin(0.5).setDepth(6);
     this.add.text(GW/2,GH*0.255,'THE ADVENTURE GETS WEIRD',{fontFamily:'Press Start 2P,monospace',fontSize:'9px',color:'#F0EAD8',align:'center'}).setOrigin(0.5).setDepth(6);
-    this.add.text(GW/2,GH*0.31,'( it does )',{fontFamily:'VT323,monospace',fontSize:'16px',color:'#88ee88',align:'center'}).setOrigin(0.5).setDepth(6);
+    this.add.text(GW/2,GH*0.31,'...nobody knows how the dog got here',{fontFamily:'VT323,monospace',fontSize:'15px',color:'#88ee88',align:'center',wordWrap:{width:GW-40}}).setOrigin(0.5).setDepth(6);
     const tap=this.add.text(GW/2,GH*0.86,'▶ TAP TO CONTINUE',{fontFamily:'Press Start 2P,monospace',fontSize:'8px',color:'#D4A843'}).setOrigin(0.5).setDepth(6);
     this.tweens.add({targets:tap,alpha:0,duration:600,yoyo:true,repeat:-1,ease:'Step'});
     Audio.fanfare();
@@ -850,7 +850,7 @@ class RoutingScene extends Phaser.Scene{
       Dlg.show([
         {speaker:'MERLIN',text:"HOT DOGS WERE CORRECT. Merlin is very smart. You are all welcome."},
         {speaker:'ANTHONY',text:"You routed us through a Federal motorcade gap using hot dog smell."},
-        {speaker:'MERLIN',text:"Merlin helped. That is what Merlin does on this trip. Merlin is very helpful on this trip."},
+        {speaker:'MERLIN',text:"Merlin helped. Merlin is beginning to understand government."},
         {speaker:'NARRATOR',text:"The cab slid through the gap on 17th. The vendor and officer did not notice. The Secret Service did not notice. Nobody noticed. Merlin was very proud."},
       ],()=>showTitleCard('CHAPTER THREE','THE STAFFERS HAVE NOTHING TO LOSE',()=>this.scene.start('BeatEmUp')));
     }else if(r.status==='damage'){
@@ -1215,7 +1215,7 @@ class BeatEmUpScene extends Phaser.Scene{
       Dlg.show([
         {speaker:'NARRATOR',text:"And then Staffer 1 got close enough to see the jacket clearly."},
         {speaker:'NARRATOR',text:"It spread through the crowd like a quiet, unexpected thing."},
-        {speaker:'ANTHONY',text:"Gentlemen. The jacket is a choice. The dog is non-negotiable. And I have a hearing. Let's all be reasonable."},
+        {speaker:'ANTHONY',text:"Everyone. The jacket is a choice. The dog is non-negotiable. And I have a hearing. Let's all be reasonable."},
         {speaker:'NARRATOR',text:"Merlin, sensing a lull, sat down in the exact center of the crowd and offered his paw to the nearest staffer. The staffer, on instinct, shook it."},
         {speaker:'MERLIN',text:"Merlin did a meeting. Merlin is good at meetings. The sad people are less sad now."},
         {speaker:'STAFFER',text:"...wait, is the dog with him? Who processed the dog? Is there a form for the dog?"},
@@ -1315,7 +1315,7 @@ class OperativeScene extends Phaser.Scene{
           {speaker:'ANTHONY',text:"Did you just clear my dog faster than you cleared me?"},
           {speaker:'OPERATIVE',text:"Yes. I'll note it in the file."},
           {speaker:'ANTHONY',text:"There's a file?"},
-          {speaker:'OPERATIVE',text:"There's always a file. ITEM: subject canine, origin unestablished. How he left the residence remains an open federal inquiry. We're aware. We're just not stopping it."},
+          {speaker:'OPERATIVE',text:"There's always a file. ITEM: subject canine. Origin unestablished. Residence exit unexplained. Federal inquiry ongoing. We're aware. We're just not stopping it."},
           {speaker:'MERLIN',text:"Merlin has not volunteered this information. Merlin is also allowed inside. Both things are true."},
           {speaker:'NARRATOR',text:"The CRT green aesthetic, which had been fighting for control since the hotel room, fully conceded. Anthony and Merlin walked toward the chamber together — one credentialed, one cleared by charisma, both federally unexplained."},
           {speaker:'ANTHONY',text:"I argued us to the one-yard line. He scored on smell. I'll take the assist."},
@@ -1631,44 +1631,6 @@ const config={
   scene:[BootScene,TitleScene,PrologueScene,PlaneScene,HotelScene,RevealTitleScene,RoutingScene,BeatEmUpScene,OperativeScene,DDRScene,EndingScene],
 };
 
-/* ── DEBUG MENU (TEMPORARY) ──────────────────────────────────────
-   Set DEBUG_MENU=false (or delete this block + the buildDebugMenu()
-   call below) to remove. Small 🐾 button, top-right, jumps to scenes. */
-const DEBUG_MENU=true;
-const DEBUG_SCENES=[
-  ['Title','Title'],['Prologue','Prologue'],['Plane / Travel','Plane'],
-  ['Hotel Reveal','Hotel'],['Real Title','RevealTitle'],['Routing','Routing'],
-  ['BeatEmUp','BeatEmUp'],['CIA','Operative'],['DDR','DDR'],['Ending','Ending'],
-];
-const DEBUG_CHAOS=['RevealTitle','Routing','BeatEmUp','Operative','DDR','Ending'];
-function __debugJump(key){
-  const g=window.__phaserGame;if(!g)return;
-  const st=window.__gameState;
-  st.hp=100;st.maxHp=100;
-  st.aesthetic=DEBUG_CHAOS.includes(key)?'chaos':'crt';
-  hideAllUI();
-  g.scene.getScenes(true).forEach(s=>{if(s.scene.key!=='Boot')g.scene.stop(s.scene.key);});
-  g.scene.start(key);
-}
-function buildDebugMenu(){
-  if(!DEBUG_MENU||document.getElementById('debug-menu'))return;
-  const wrap=document.createElement('div');wrap.id='debug-menu';
-  const btn=document.createElement('button');btn.id='debug-toggle';btn.textContent='🐾';btn.title='Debug: jump to scene';
-  const panel=document.createElement('div');panel.id='debug-panel';
-  const hdr=document.createElement('div');hdr.id='debug-hdr';hdr.textContent='DEBUG · JUMP';panel.appendChild(hdr);
-  DEBUG_SCENES.forEach(([label,key])=>{
-    const b=document.createElement('button');b.className='debug-jump';b.textContent=label;
-    const go=(e)=>{if(e)e.preventDefault();__debugJump(key);panel.classList.remove('open');};
-    b.addEventListener('click',go);
-    b.addEventListener('touchend',go,{passive:false});
-    panel.appendChild(b);
-  });
-  btn.addEventListener('click',()=>panel.classList.toggle('open'));
-  wrap.appendChild(btn);wrap.appendChild(panel);
-  document.body.appendChild(wrap);
-}
-
 window.__anthonyMerlinBootGame=()=>{
   window.__phaserGame=new Phaser.Game(config);
-  buildDebugMenu();
 };
