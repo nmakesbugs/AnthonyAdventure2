@@ -1149,6 +1149,9 @@ class BeatEmUpScene extends Phaser.Scene{
     });
   }
   _doStun(){
+    // Never fire once the wave is resolving — its Dlg.show would clobber the
+    // resolution dialogue's onDone (the Wave 3 hang).
+    if(!this.waveActive)return;
     Audio.stun();flashScreen('gold',300);
     this.enemies.forEach(e=>{if(!e.dead){e.attackTimer+=3;e.throwTimer+=3;}});
     Dlg.show([{speaker:'ANTHONY',text:"SECTION 508 OF THE REHAB ACT SAYS—"}],()=>{});
@@ -1209,6 +1212,9 @@ class BeatEmUpScene extends Phaser.Scene{
     if(hpPct<0.5){
       this.scriptedFired=true;
       this.waveActive=false;
+      // Hide controls during the scripted beat so a stray action (e.g. STUN's
+      // Dlg.show) can't overwrite this dialogue's onDone and strand the player.
+      this._hideControls();
       // Freeze all enemies
       this.enemies.forEach(e=>{e.state='frozen';if(e.sprite)e.sprite.setTint(0xaaaaaa);});
       Dlg.show([
